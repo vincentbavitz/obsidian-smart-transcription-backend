@@ -1,0 +1,19 @@
+version: "3.4"
+
+services:
+  whisper-asr:
+    container_name: whisper-asr
+    image: "onerahmet/openai-whisper-asr-webservice:latest"
+    restart: always
+    ports:
+      - "9000:9000"
+    environment:
+      ASR_MODEL: base.en
+  ffmpeg-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ffmpeg-api
+    restart: always
+    ports:
+      - 9001:9001
