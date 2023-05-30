@@ -1,9 +1,8 @@
 ## Setup Instructions
 
-First, run `yarn setup` to get the FFMPEG binary.
+If running outside of Docker, first, run `yarn setup` to get the FFMPEG binary, then run `yarn start`.
 
-Then simply run `docker compose up` from your server.
-The FFMPEG and Whisper ASR APIs will be pulled and served locally.
+If running inside Docker, simply run `docker compose up` on your server from the root project directory. The FFMPEG and Whisper ASR APIs will be pulled and served locally.
 
 You can use the sample systemd service at `./systemd/obsidian-smart-transcription.service` by placing it into `/etc/systemd/system`:
 
