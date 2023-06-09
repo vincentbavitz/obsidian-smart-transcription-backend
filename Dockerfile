@@ -16,5 +16,5 @@ RUN yarn setup
 # RUN npm install --only=production
 # Bundle app source
 COPY . .
-EXPOSE 9001
+EXPOSE 1337
 CMD [ "yarn", "start" ]

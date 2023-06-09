@@ -1,14 +1,16 @@
 version: "3.4"
 
 services:
- ffmpeg-api:
+  ffmpeg-api:
     build:
       context: .
       dockerfile: Dockerfile
     container_name: ffmpeg-api
+    networks:
+      - shared
     restart: always
     ports:
-      - 9001:9001
+      - 1337:1337
 
   whisper-asr-webservice-gpu:
     container_name: whisper-asr-gpu
@@ -21,11 +23,17 @@ services:
               count: 1
               capabilities: [gpu]
     restart: always
-    ports:
-      - "9000:9000"
+    networks:
+      - shared
+    expose:
+      - 9000
     environment:
       ASR_MODEL: base.en
       ASR_ENGINE: faster_whisper
     volumes:
       - ./.cache/whisper:/root/.cache/whisper
       - ./.cache/faster_whisper:/root/.cache/faster_whisper
+
+networks:
+  shared:
+    driver: bridge

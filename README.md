@@ -23,7 +23,7 @@ systemctl start obsidian-smart-transcription
 ## Using the API
 
 To convert an audio file, send a POST request to
-`http://{HOST}:9001/convert/audio`. Ensure your reequet format is using form-data, setting the `audio` field to the binary data of your audio file and the `format` field to your desired audio output format.
+`http://{HOST}:1337/convert/audio`. Ensure your reequet format is using form-data, setting the `audio` field to the binary data of your audio file and the `format` field to your desired audio output format.
 
 You can input the following formats:
 
@@ -39,3 +39,28 @@ You can convert to the following formats:
 - "mp3"
 - "m4a"
 - "aac"
+
+## Server Setup
+
+1. Install Docker Engine
+
+According to [this guide](https://gist.github.com/ingo-m/0952a9d77dc39250b559cbbb91ca9dae), set up NVIDIA to run on Docker on your server.
+
+Install CUDA
+
+- Allow nonfree packages with apt
+
+  ````bash
+  echo "deb http://deb.debian.org/debian/ sid main contrib non-free non-free-firmware" >> /etc/apt/sources.list```
+  ````
+
+- Install CUDA
+
+  ```bash
+  apt update
+  apt install nvidia-driver firmware-misc-nonfree
+
+  ```
+
+If your server has GPU access (NVIDIA), run
+`docker compose --file ./docker-compose-gpu.yml up --build`

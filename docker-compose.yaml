@@ -6,19 +6,27 @@ services:
       context: .
       dockerfile: Dockerfile
     container_name: ffmpeg-api
+    networks:
+      - shared
     restart: always
     ports:
-      - 9001:9001
+      - 1337:1337
 
   whisper-asr:
     container_name: whisper-asr
     image: "onerahmet/openai-whisper-asr-webservice:latest"
     restart: always
-    ports:
-      - "9000:9000"
+    networks:
+      - shared
+    expose:
+      - 9000
     environment:
       ASR_MODEL: base.en
       ASR_ENGINE: faster_whisper
     volumes:
       - ./.cache/whisper:/root/.cache/whisper
       - ./.cache/faster_whisper:/root/.cache/faster_whisper
+
+networks:
+  shared:
+    driver: bridge
