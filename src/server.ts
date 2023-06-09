@@ -14,7 +14,7 @@ const main = async () => {
   });
 
   app.use(cors());
-  app.post("/convert/audio", upload.single("audio"), async (req, res) => {
+  app.post("/convert/audio", upload.single("audio_file"), async (req, res) => {
     if (!req.file) {
       res.status(400).json({ message: "Invalid audio file." });
       return;
