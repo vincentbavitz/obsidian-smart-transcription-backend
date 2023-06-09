@@ -20,19 +20,12 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
-    environment:
-      - ASR_MODEL=base
+    restart: always
     ports:
-      - 9000:9000
+      - "9000:9000"
+    environment:
+      ASR_MODEL: base.en
+      ASR_ENGINE: faster_whisper
     volumes:
-      - ./app:/app/app
-      - cache-pip:/root/.cache/pip
-      - cache-poetry:/root/.cache/poetry
-      - cache-whisper:/root/.cache/whisper
-      - cache-faster-whisper:/root/.cache/faster_whisper
-
-volumes:
-  cache-pip:
-  cache-poetry:
-  cache-whisper:
-  cache-faster-whisper:
+      - ./.cache/whisper:/root/.cache/whisper
+      - ./.cache/faster_whisper:/root/.cache/faster_whisper
