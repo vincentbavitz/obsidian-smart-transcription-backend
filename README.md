@@ -22,8 +22,10 @@ systemctl start obsidian-smart-transcription
 
 ## Using the API
 
-To convert an audio file, send a POST request to
-`http://{HOST}:1337/convert/audio`. Ensure your reequet format is using form-data, setting the `audio` field to the binary data of your audio file and the `format` field to your desired audio output format.
+### Convert Audio Endpoint `/convert/audio`
+
+To convert an audio file, send a POST request to `http://{HOST}:1337/convert/audio`.
+Ensure your reequet format is using form-data, setting the `audio_file` field to the binary data of your audio file and the `format` field to your desired audio output format.
 
 You can input the following formats:
 
@@ -40,6 +42,11 @@ You can convert to the following formats:
 - "m4a"
 - "aac"
 
+### Transcribe Audio Endpoint `/transcribe`
+
+To transcribe an audio file, send a POST request to `http://{HOST}:1337/transcribe`.
+Ensure your reequet format is using form-data, setting the `audio_file` field to the binary data of your audio file.
+
 ## Server Setup
 
 1. Install Docker Engine
@@ -50,9 +57,9 @@ Install CUDA
 
 - Allow nonfree packages with apt
 
-  ````bash
-  echo "deb http://deb.debian.org/debian/ sid main contrib non-free non-free-firmware" >> /etc/apt/sources.list```
-  ````
+  ```bash
+  echo "deb http://deb.debian.org/debian/ sid main contrib non-free non-free-firmware" >> /etc/apt/sources.list
+  ```
 
 - Install CUDA
 
