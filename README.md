@@ -31,6 +31,7 @@ You can input the following formats:
 - "mp3"
 - "m4a"
 - "aac"
+- "opus"
 
 You can convert to the following formats:
 
@@ -38,4 +39,3 @@ You can convert to the following formats:
 - "mp3"
 - "m4a"
 - "aac"
-- "opus"
