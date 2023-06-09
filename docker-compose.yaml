@@ -1,14 +1,6 @@
 version: "3.4"
 
 services:
-  whisper-asr:
-    container_name: whisper-asr
-    image: "onerahmet/openai-whisper-asr-webservice:latest"
-    restart: always
-    ports:
-      - "9000:9000"
-    environment:
-      ASR_MODEL: base.en
   ffmpeg-api:
     build:
       context: .
@@ -17,3 +9,24 @@ services:
     restart: always
     ports:
       - 9001:9001
+
+  whisper-asr:
+    container_name: whisper-asr
+    image: "onerahmet/openai-whisper-asr-webservice:latest"
+    restart: always
+    ports:
+      - "9000:9000"
+    environment:
+      ASR_MODEL: base.en
+    volumes:
+      - ./app:/app/app
+      - ./cache/pip:/root/.cache/pip
+      - ./cache/poetry:/root/.cache/poetry
+      - ./cache/whisper:/root/.cache/whisper
+      - ./cache/faster-whisper:/root/.cache/faster_whisper
+
+volumes:
+  cache-pip:
+  cache-poetry:
+  cache-whisper:
+  cache-faster-whisper:

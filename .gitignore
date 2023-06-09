@@ -1,2 +1,4 @@
 .ffmpeg
+.cache
+app
 node_modules

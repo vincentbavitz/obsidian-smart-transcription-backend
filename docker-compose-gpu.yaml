@@ -1,0 +1,38 @@
+version: "3.4"
+
+services:
+ ffmpeg-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ffmpeg-api
+    restart: always
+    ports:
+      - 9001:9001
+
+  whisper-asr-webservice-gpu:
+    container_name: whisper-asr-gpu
+    image: "onerahmet/openai-whisper-asr-webservice:latest-gpu"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    environment:
+      - ASR_MODEL=base
+    ports:
+      - 9000:9000
+    volumes:
+      - ./app:/app/app
+      - cache-pip:/root/.cache/pip
+      - cache-poetry:/root/.cache/poetry
+      - cache-whisper:/root/.cache/whisper
+      - cache-faster-whisper:/root/.cache/faster_whisper
+
+volumes:
+  cache-pip:
+  cache-poetry:
+  cache-whisper:
+  cache-faster-whisper:
