@@ -10,7 +10,11 @@ const VALID_AUDIO_OUTPUT_FORMATS: Array<AudioFormat> = [
   "aac",
 ];
 
-const VALID_AUDIO_INPUT_FORMATS = [...VALID_AUDIO_OUTPUT_FORMATS, "opus"];
+const VALID_AUDIO_INPUT_FORMATS = [
+  ...VALID_AUDIO_OUTPUT_FORMATS,
+  "opus",
+  "ogg",
+];
 
 const FFMPEG_PATH = "./.ffmpeg/ffmpeg";
 const TMP_PATH = "/tmp/ffmpeg-api";

@@ -25,7 +25,7 @@ systemctl start obsidian-smart-transcription
 ### Convert Audio Endpoint `/convert/audio`
 
 To convert an audio file, send a POST request to `http://{HOST}:1337/convert/audio`.
-Ensure your reequet format is using form-data, setting the `audio_file` field to the binary data of your audio file and the `format` field to your desired audio output format.
+Ensure your request format is using form-data, setting the `audio_file` field to the binary data of your audio file and the `format` field to your desired audio output format.
 
 You can input the following formats:
 
@@ -45,7 +45,7 @@ You can convert to the following formats:
 ### Transcribe Audio Endpoint `/transcribe`
 
 To transcribe an audio file, send a POST request to `http://{HOST}:1337/transcribe`.
-Ensure your reequet format is using form-data, setting the `audio_file` field to the binary data of your audio file.
+Ensure your request format is using form-data, setting the `audio_file` field to the binary data of your audio file.
 
 ## Server Setup
 
